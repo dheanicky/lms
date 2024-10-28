@@ -24,9 +24,9 @@
                     @endif
 
                     <!-- Content Management Header -->
-                    <div class="flex justify-between items-center mb-4">
-                        <h3 class="text-lg font-medium">Manage Content</h3>
-                        <a href="{{ route('admin.content.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" enctype="multipart/form-data">
+                    <div class="flex justify-end items-center mb-4">
+                        <a href="{{ route('admin.content.create') }}"
+                           class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-200 ease-in-out transform hover:scale-105">
                             Add New Content
                         </a>
                     </div>
@@ -75,7 +75,7 @@
                                             {{ $item->price }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            <img src="{{ Storage::url('images/' . $item->image_url) }}" alt="image" class="w-16 h-16">
+                                            <img src="{{ asset('img/' . $item->image) }}" alt="image" class="w-16 h-16">
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             {{ $item->category }}

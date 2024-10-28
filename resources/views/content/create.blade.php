@@ -45,9 +45,9 @@
             <x-input-label for="category" :value="__('Kategori')" />
             <select id="category" name="category" required class="block mt-1 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                 <option value="" disabled {{ old('category') ? '' : 'selected' }}>Pilih Kategori</option>
-                <option value="technology" {{ old('category') == 'technology' ? 'selected' : '' }}>Laravel</option>
-                <option value="science" {{ old('category') == 'science' ? 'selected' : '' }}>PHP</option>
-                <option value="art" {{ old('category') == 'art' ? 'selected' : '' }}>Other</option>
+                <option value="Laravel" {{ old('category') == 'technology' ? 'selected' : '' }}>Laravel</option>
+                <option value="PHP" {{ old('category') == 'science' ? 'selected' : '' }}>PHP</option>
+                <option value="Other" {{ old('category') == 'art' ? 'selected' : '' }}>Other</option>
             </select>
             <x-input-error :messages="$errors->get('category')" class="mt-2" />
         </div>

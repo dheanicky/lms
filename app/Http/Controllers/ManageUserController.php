@@ -51,4 +51,5 @@ class ManageUserController extends Controller
 
         return redirect()->back()->with('status', 'User has been unbanned');
     }
+
 }

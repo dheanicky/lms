@@ -1,5 +1,4 @@
 <section class="bg-gray-100 p-6 flex justify-center">
-    <!-- Left Side: Account Info Section -->
     <div class="w-1/3">
         <header class="mb-6">
             <h2 class="text-lg font-medium text-gray-900">
@@ -8,7 +7,6 @@
         </header>
     </div>
 
-    <!-- Right Side: Profile Form Section -->
     <div class="flex items-center justify-center w-2/3 ml-10 mt-10 p-10">
         <div class="w-full max-w-full p-30">
             <form method="post" action="{{ route('profile.update') }}" class="space-y-6 bg-white p-6 rounded-md shadow-md" id="profile-form">
@@ -21,8 +19,7 @@
                         <x-input-label for="name" :value="('Name')" class="text-gray-600 text-sm" />
                         <div class="flex items-center mt-1">
                             <x-text-input id="name" name="name" type="text" class="w-full text-xl font-semibold text-gray-800"
-                                          :value="old('name', $user->name)" required autofocus autocomplete="name"
-                                          oninput="autoSubmitForm()" />
+                                          :value="old('name', $user->name)" required autofocus autocomplete="name" />
                             <button type="button" class="ml-2">
                                 <svg class="w-5 h-5 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
                                      viewBox="0 0 20 20">
@@ -37,9 +34,8 @@
                     <div class="flex flex-col">
                         <x-input-label for="phone" :value="('Phone Number')" class="text-gray-600 text-sm" />
                         <div class="flex items-center mt-1">
-                            <x-text-input id="phone" name="phone" type="text" class="w-full text-xl font-semibold text-gray-800"
-                                          :value="old('phone', $user->phone)" required autofocus autocomplete="phone"
-                                          oninput="autoSubmitForm()" />
+                            <x-text-input id="phone" name="phone_number" type="text" class="w-full text-xl font-semibold text-gray-800"
+                                          :value="old('phone', $user->phone_number)" required autocomplete="phone" />
                             <button type="button" class="ml-2">
                                 <svg class="w-5 h-5 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
                                      viewBox="0 0 20 20">
@@ -55,8 +51,7 @@
                         <x-input-label for="email" :value="('Email')" class="text-gray-600 text-sm" />
                         <div class="flex items-center mt-1">
                             <x-text-input id="email" name="email" type="email" class="w-full text-xl font-semibold text-gray-800"
-                                          :value="old('email', $user->email)" required autocomplete="username"
-                                          oninput="autoSubmitForm()" />
+                                          :value="old('email', $user->email)" required autocomplete="username" />
                             <button type="button" class="ml-2">
                                 <svg class="w-5 h-5 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
                                      viewBox="0 0 20 20">
@@ -72,8 +67,7 @@
                         <x-input-label for="password" :value="('Password')" class="text-gray-600 text-sm" />
                         <div class="flex items-center mt-1">
                             <x-text-input id="password" name="password" type="password" class="w-full text-xl font-semibold text-gray-800"
-                                          :value="old('password', $user->password)" required autocomplete="username"
-                                          oninput="autoSubmitForm()" />
+                                          autocomplete="new-password" />
                             <button type="button" class="ml-2">
                                 <svg class="w-5 h-5 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
                                      viewBox="0 0 20 20">
@@ -87,13 +81,14 @@
 
                 <!-- Auto Submit Script -->
                 <script>
-                    let debounceTimer;
-                    function autoSubmitForm() {
-                        clearTimeout(debounceTimer);
-                        debounceTimer = setTimeout(() => {
-                            document.getElementById('profile-form').submit();
-                        }, 1000); // Menunggu 1 detik setelah pengguna berhenti mengetik
-                    }
+                    document.querySelectorAll('#profile-form input').forEach(input => {
+                        input.addEventListener('keydown', function(event) {
+                            if (event.key === 'Enter') {
+                                event.preventDefault();
+                                document.getElementById('profile-form').submit();
+                            }
+                        });
+                    });
                 </script>
             </form>
         </div>

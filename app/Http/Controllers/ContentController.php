@@ -42,23 +42,20 @@ class ContentController extends Controller
         'category' => 'nullable|string|max:100',
     ]);
 
-    $imgName = null;
-
     // Menangani upload gambar
     if ($request->hasFile('image')) {
         $image = $request->file('image');
-        $imgName = date('YmdHis') . "." . $image->getClientOriginalExtension();
-        $image->storeAs('public/images', $imgName); // Simpan ke folder 'public/images'
+        $imgName = date('YmdHis') . "." . $image->getClientOriginalExtension();    
+        $image->move(public_path('/img'), $imgName);
     }
 
-    // Menyimpan data ke dalam database
-    $createContent = Content::create([
+    Content::create([
         'user_id' => Auth::user()->id,
         'title' => $request->title,
         'description' => $request->description,
         'url_video' => $request->url_video,
         'price' => $request->price,
-        'image_url' => $imgName ? 'images/' . $imgName : null, // Simpan path relatif ke gambar
+        'image' => $imgName, // Simpan path relatif ke gambar
         'category' => $request->category,
     ]);
 
